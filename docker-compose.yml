@@ -1,0 +1,28 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    environment:
+      - DATABASE_URL=postgresql://usernamehere:passwordhere@db:5432/app
+  db:
+    image: postgres:17
+    container_name: jobhunt-postgres
+    restart: unless-stopped
+    shm_size: 128mb
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=usernamehere
+      - POSTGRES_PASSWORD=passwordhere
+      - POSTGRES_DB=app
+    volumes:
+      - ./dbdata:/var/lib/postgresql/data
+volumes:
+  node_modules:
