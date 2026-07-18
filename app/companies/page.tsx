@@ -11,6 +11,7 @@ export default function Home() {
   return (
     <div className="">
       <main className="">
+        <h1 className="text-2xl text-center h-20">Companies</h1>
         <Table>
           <TableHeader>
             <TableRow>
