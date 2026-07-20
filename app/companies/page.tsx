@@ -6,8 +6,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { getCompanies } from "@/lib/data-access";
 
-export default function Home() {
+export default async function Home() {
+  const companies = await getCompanies();
+  console.log(companies);
   return (
     <div className="">
       <main className="">
@@ -32,22 +35,24 @@ export default function Home() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableCell>0001</TableCell>
-              <TableCell>S</TableCell>
-              <TableCell>IS応募済み</TableCell>
-              <TableCell>ABC株式会社</TableCell>
-              <TableCell>なし</TableCell>
-              <TableCell>なし</TableCell>
-              <TableCell>mypage.example.com</TableCell>
-              <TableCell>Agent ABC</TableCell>
-              <TableCell>1,0000,000 JPY ~</TableCell>
-              <TableCell>Y</TableCell>
-              <TableCell>Y</TableCell>
-              <TableCell>Y</TableCell>
-              <TableCell>N</TableCell>
-              <TableCell>1500h/m</TableCell>
-            </TableRow>
+            {companies.map((e) => (
+              <TableRow key={e.id}>
+                <TableCell>{e.id}</TableCell>
+                <TableCell>{e.rank}</TableCell>
+                <TableCell>FILLING</TableCell>
+                <TableCell>{e.name}</TableCell>
+                <TableCell>なし</TableCell>
+                <TableCell>なし</TableCell>
+                <TableCell>{e.mypageUrl}</TableCell>
+                <TableCell>{e.offeredFrom}</TableCell>
+                <TableCell>{e.salary}</TableCell>
+                <TableCell>{e.canSideJob ? "Y" : "N"}</TableCell>
+                <TableCell>{e.canRemote ? "Y" : "N"}</TableCell>
+                <TableCell>{e.haveOwnProduct ? "Y" : "N"}</TableCell>
+                <TableCell>{e.haveSecurity ? "Y" : "N"}</TableCell>
+                <TableCell>{e.avgOvertime}</TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </main>
