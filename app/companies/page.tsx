@@ -10,7 +10,6 @@ import { getCompanies } from "@/lib/data-access";
 
 export default async function Home() {
   const companies = await getCompanies();
-  console.log(companies);
   return (
     <div className="">
       <main className="">
