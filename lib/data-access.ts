@@ -10,3 +10,12 @@ export async function getCompanies() {
   const prisma = new PrismaClient({ adapter });
   return prisma.company.findMany();
 }
+
+export async function getCompanyFromId(id: number) {
+  const prisma = new PrismaClient({ adapter });
+  return prisma.company.findUnique({
+    where: {
+      id,
+    },
+  });
+}
