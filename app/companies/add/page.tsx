@@ -7,6 +7,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 import { Button } from "@/components/ui/button";
 import { addCompany } from "@/lib/data-access";
+import Header from "@/components/Header";
+import { Textarea } from "@/components/ui/textarea";
 
 export default async function Home() {
   const add = async (formData: FormData) => {
@@ -39,37 +41,58 @@ export default async function Home() {
 
   return (
     <div>
+      <Header title="Add New Company" />
       <form action={add}>
         <FieldGroup>
           <FieldSet>
             <FieldGroup>
               <Field>
-                <FieldLabel>会社名</FieldLabel>
+                <FieldLabel className="text-sm py-2">会社名</FieldLabel>
                 <Input name="name"></Input>
-                <FieldLabel>ランク</FieldLabel>
+                <FieldLabel className="text-sm py-2">ランク</FieldLabel>
                 <Input name="rank"></Input>
-                <FieldLabel>ステータス</FieldLabel>
+                <FieldLabel className="text-sm py-2">ステータス</FieldLabel>
                 <Input name="status"></Input>
-                <FieldLabel>mypage</FieldLabel>
+                <FieldLabel className="text-sm py-2">mypage</FieldLabel>
                 <Input name="mypageurl"></Input>
-                <FieldLabel>mypageid</FieldLabel>
+                <FieldLabel className="text-sm py-2">mypageid</FieldLabel>
                 <Input name="mypageid"></Input>
-                <FieldLabel>オファー元サイト</FieldLabel>
+                <FieldLabel className="text-sm py-2">
+                  オファー元サイト
+                </FieldLabel>
                 <Input name="offeredfrom"></Input>
-                <FieldLabel>年収予定</FieldLabel>
+                <FieldLabel className="text-sm py-2">年収予定</FieldLabel>
                 <Input name="salary"></Input>
-                <FieldLabel>副業</FieldLabel>
-                <Checkbox name="canSide" />
-                <FieldLabel>リモート</FieldLabel>
-                <Checkbox name="canRemote" />
-                <FieldLabel>自社開発</FieldLabel>
-                <Checkbox name="haveProduct" />
-                <FieldLabel>セキュリティ</FieldLabel>
-                <Checkbox name="haveSecurity" />
-                <FieldLabel>平均残業時間</FieldLabel>
+                <div className="flex gap-4">
+                  <div className="flex">
+                    <FieldLabel className="text-sm" htmlFor="canSide">
+                      副業 :　
+                    </FieldLabel>
+                    <Checkbox name="canSide" className="py-1" />
+                  </div>
+                  <div className="flex">
+                    <FieldLabel className="text-sm" htmlFor="canRemote">
+                      リモート :　
+                    </FieldLabel>
+                    <Checkbox name="canRemote" className="py-1" />
+                  </div>
+                  <div className="flex">
+                    <FieldLabel className="text-sm" htmlFor="haveProduct">
+                      自社開発 :　
+                    </FieldLabel>
+                    <Checkbox name="haveProduct" />
+                  </div>
+                  <div className="flex">
+                    <FieldLabel className="text-sm" htmlFor="haveSecurity">
+                      セキュリティ : 　
+                    </FieldLabel>
+                    <Checkbox name="haveSecurity" />
+                  </div>
+                </div>
+                <FieldLabel className="text-sm py-2">平均残業時間</FieldLabel>
                 <Input name="avgOvertime"></Input>
-                <FieldLabel>そのほかメモ</FieldLabel>
-                <Input name="note"></Input>
+                <FieldLabel className="text-sm py-2">そのほかメモ</FieldLabel>
+                <Textarea name="note" rows={10} />
                 <Button variant="outline" type="submit">
                   Submit
                 </Button>
