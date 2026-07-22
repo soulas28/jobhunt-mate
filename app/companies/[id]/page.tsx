@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { getCompanyFromId } from "@/lib/data-access";
+import Link from "next/link";
 
 export default async function Home({
   params,
@@ -15,6 +16,11 @@ export default async function Home({
       <Header title="Company Detail" />
       {company !== null ? (
         <main>
+          <div className="flex">
+            <Link href={`/companies/${company.id.toString()}/edit`}>
+              <Button>Modify</Button>
+            </Link>
+          </div>
           <h1 className="text-4xl py-2">{company.name}</h1>
           <h2 className="text-2xl py-2">tier : {company.rank}</h2>
           <p className="py-2">id : {company.id}</p>
