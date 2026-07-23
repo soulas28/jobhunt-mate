@@ -17,6 +17,7 @@ model Company {
 
   name String
   rank String
+  status String
 
   deadline DateTime?
   mypageUrl String?

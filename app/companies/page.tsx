@@ -7,12 +7,20 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getCompanies } from "@/lib/data-access";
+import { getCompanies, statusItems } from "@/lib/data-access";
 import Link from "next/link";
 import Header from "../../components/Header";
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    showall?: string;
+  }>;
+}) {
   const companies = await getCompanies();
+  const showall = await (await searchParams).showall;
+
   return (
     <main>
       <Header title="Companies" />
@@ -20,6 +28,11 @@ export default async function Home() {
         <Link href="/companies/add">
           <Button className="right-0 px-10 py-5 text-lg mb-5 justify-end">
             New
+          </Button>
+        </Link>
+        <Link href={`/companies${showall === "true" ? "" : "?showall=true"}`}>
+          <Button className="right-0 px-10 py-5 text-lg mb-5 justify-end">
+            {showall === "true" ? "Hide" : "ShowAll"}
           </Button>
         </Link>
       </div>
@@ -45,6 +58,7 @@ export default async function Home() {
         </TableHeader>
         <TableBody>
           {companies.map((e) => {
+            if (showall !== "true" && e.status === "DECLINED") return;
             return (
               <TableRow key={e.id}>
                 <TableCell className="w-10">
@@ -54,7 +68,9 @@ export default async function Home() {
                 </TableCell>
                 <TableCell>{e.id}</TableCell>
                 <TableCell>{e.rank}</TableCell>
-                <TableCell>FILLING</TableCell>
+                <TableCell>
+                  {statusItems.find((j) => j.value === e.status)?.label || ""}
+                </TableCell>
                 <TableCell>{e.name}</TableCell>
                 <TableCell>なし</TableCell>
                 <TableCell>なし</TableCell>

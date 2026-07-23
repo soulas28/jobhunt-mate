@@ -6,28 +6,37 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 
 import { Button } from "@/components/ui/button";
-import { addCompany } from "@/lib/data-access";
+import { addCompany, statusItems } from "@/lib/data-access";
 import Header from "@/components/Header";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default async function Home() {
   const add = async (formData: FormData) => {
     "use server";
 
-    console.log(formData.get("canSide"));
     // validation
     if (!formData.get("name")) return;
     if (!formData.get("rank")) return;
+    if (!formData.get("status")) return;
 
     await addCompany({
       // must (brank strings are logically unreachable)
       name: formData.get("name")?.toString() || "",
       rank: formData.get("rank")?.toString() || "",
+      status: formData.get("status")?.toString() || "",
 
       // not have to
       mypageUrl: formData.get("mypageurl")?.toString() || "",
       mypageId: formData.get("mypageid")?.toString() || "",
-      offeredFrom: formData.get("rank")?.toString() || "",
+      offeredFrom: formData.get("offeredfrom")?.toString() || "",
       salary: formData.get("salary")?.toString() || "",
       canSideJob: formData.get("canSide")?.toString() === "on",
       canRemote: formData.get("canRemote")?.toString() === "on",
@@ -52,7 +61,20 @@ export default async function Home() {
                 <FieldLabel className="text-sm py-2">ランク</FieldLabel>
                 <Input name="rank"></Input>
                 <FieldLabel className="text-sm py-2">ステータス</FieldLabel>
-                <Input name="status"></Input>
+                <Select items={statusItems} name="status">
+                  <SelectTrigger>
+                    <SelectValue placeholder="Status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      {statusItems.map((e) => (
+                        <SelectItem key={e.value} value={e.value}>
+                          {e.label}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
                 <FieldLabel className="text-sm py-2">mypage</FieldLabel>
                 <Input name="mypageurl"></Input>
                 <FieldLabel className="text-sm py-2">mypageid</FieldLabel>

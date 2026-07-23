@@ -11,6 +11,16 @@ export async function getCompanies() {
   return prisma.company.findMany();
 }
 
+export const statusItems = [
+  { label: "未エントリー", value: "NOT_ENTRY" },
+  { label: "IS応募済み", value: "IS_APPLIED" },
+  { label: "IS終了", value: "IS_FINISHED" },
+  { label: "検討中", value: "CONSIDERING" },
+  { label: "内定", value: "OFFERED" },
+  { label: "お祈り", value: "REJECTED" },
+  { label: "辞退/非表示", value: "DECLINED" },
+];
+
 export async function getCompanyFromId(id: number) {
   const prisma = new PrismaClient({ adapter });
   return prisma.company.findUnique({
@@ -23,6 +33,7 @@ export async function getCompanyFromId(id: number) {
 export async function addCompany(params: {
   name: string;
   rank: string;
+  status: string;
   mypageUrl?: string;
   mypageId?: string;
   offeredFrom?: string;
@@ -39,6 +50,7 @@ export async function addCompany(params: {
     data: {
       name: params.name,
       rank: params.rank,
+      status: params.status,
       mypageUrl: params.mypageUrl,
       mypageId: params.mypageId,
       offeredFrom: params.offeredFrom,
@@ -57,6 +69,7 @@ export async function updateCompany(params: {
   id: number;
   name: string;
   rank: string;
+  status: string;
   mypageUrl?: string;
   mypageId?: string;
   offeredFrom?: string;
@@ -76,6 +89,7 @@ export async function updateCompany(params: {
     data: {
       name: params.name,
       rank: params.rank,
+      status: params.status,
       mypageUrl: params.mypageUrl,
       mypageId: params.mypageId,
       offeredFrom: params.offeredFrom,
