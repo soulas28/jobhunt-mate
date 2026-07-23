@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 
 import { Button } from "@/components/ui/button";
-import { addCompany, statusItems } from "@/lib/data-access";
+import { addCompany, rankItems, statusItems } from "@/lib/data-access";
 import Header from "@/components/Header";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -59,7 +59,20 @@ export default async function Page() {
                 <FieldLabel className="text-sm py-2">会社名</FieldLabel>
                 <Input name="name"></Input>
                 <FieldLabel className="text-sm py-2">ランク</FieldLabel>
-                <Input name="rank"></Input>
+                <Select items={rankItems} name="rank">
+                  <SelectTrigger>
+                    <SelectValue placeholder="rank" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      {rankItems.map((e) => (
+                        <SelectItem key={e.value} value={e.value}>
+                          {e.label}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
                 <FieldLabel className="text-sm py-2">ステータス</FieldLabel>
                 <Select items={statusItems} name="status">
                   <SelectTrigger>
