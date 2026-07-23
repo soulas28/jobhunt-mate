@@ -10,6 +10,7 @@ import {
   updateCompany,
   getCompanyFromId,
   statusItems,
+  rankItems,
 } from "@/lib/data-access";
 import Header from "@/components/Header";
 import { Textarea } from "@/components/ui/textarea";
@@ -71,7 +72,24 @@ export default async function Page({
                 <FieldLabel className="text-sm py-2">会社名</FieldLabel>
                 <Input name="name" defaultValue={company?.name}></Input>
                 <FieldLabel className="text-sm py-2">ランク</FieldLabel>
-                <Input name="rank" defaultValue={company?.rank}></Input>
+                <Select
+                  items={rankItems}
+                  name="rank"
+                  defaultValue={company?.rank}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="rank" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      {rankItems.map((e) => (
+                        <SelectItem key={e.value} value={e.value}>
+                          {e.label}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
                 <FieldLabel className="text-sm py-2">ステータス</FieldLabel>
                 <Select></Select>
                 <Select items={statusItems} name="status">

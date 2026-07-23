@@ -21,6 +21,21 @@ export const statusItems = [
   { label: "辞退/非表示", value: "DECLINED" },
 ];
 
+export const rankItems = [
+  "S+",
+  "S",
+  "S-",
+  "A+",
+  "A",
+  "A-",
+  "B+",
+  "B",
+  "B-",
+  "C",
+].map((e) => {
+  return { label: e, value: e };
+});
+
 export async function getCompanyFromId(id: number) {
   const prisma = new PrismaClient({ adapter });
   return prisma.company.findUnique({
