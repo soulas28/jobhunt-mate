@@ -70,7 +70,7 @@ export default async function Page({
             <FieldGroup>
               <Field>
                 <FieldLabel className="text-sm py-2">会社名</FieldLabel>
-                <Input name="name" defaultValue={company?.name}></Input>
+                <Input name="name" defaultValue={company?.name} />
                 <FieldLabel className="text-sm py-2">ランク</FieldLabel>
                 <Select
                   items={rankItems}
@@ -113,24 +113,18 @@ export default async function Page({
                 <Input
                   name="mypageurl"
                   defaultValue={company?.mypageUrl || ""}
-                ></Input>
+                />
                 <FieldLabel className="text-sm py-2">mypageid</FieldLabel>
-                <Input
-                  name="mypageid"
-                  defaultValue={company?.mypageId || ""}
-                ></Input>
+                <Input name="mypageid" defaultValue={company?.mypageId || ""} />
                 <FieldLabel className="text-sm py-2">
                   オファー元サイト
                 </FieldLabel>
                 <Input
                   name="offeredfrom"
                   defaultValue={company?.offeredFrom || ""}
-                ></Input>
+                />
                 <FieldLabel className="text-sm py-2">年収予定</FieldLabel>
-                <Input
-                  name="salary"
-                  defaultValue={company?.salary || ""}
-                ></Input>
+                <Input name="salary" defaultValue={company?.salary || ""} />
                 <div className="flex gap-4">
                   <div className="flex">
                     <FieldLabel className="text-sm" htmlFor="canSide">
@@ -175,7 +169,7 @@ export default async function Page({
                 <Input
                   name="avgOvertime"
                   defaultValue={company?.avgOvertime || ""}
-                ></Input>
+                />
                 <FieldLabel className="text-sm py-2">そのほかメモ</FieldLabel>
                 <Textarea
                   name="note"

@@ -57,7 +57,7 @@ export default async function Page() {
             <FieldGroup>
               <Field>
                 <FieldLabel className="text-sm py-2">会社名</FieldLabel>
-                <Input name="name"></Input>
+                <Input name="name" />
                 <FieldLabel className="text-sm py-2">ランク</FieldLabel>
                 <Select items={rankItems} name="rank">
                   <SelectTrigger>
@@ -89,15 +89,15 @@ export default async function Page() {
                   </SelectContent>
                 </Select>
                 <FieldLabel className="text-sm py-2">mypage</FieldLabel>
-                <Input name="mypageurl"></Input>
+                <Input name="mypageurl" />
                 <FieldLabel className="text-sm py-2">mypageid</FieldLabel>
-                <Input name="mypageid"></Input>
+                <Input name="mypageid" />
                 <FieldLabel className="text-sm py-2">
                   オファー元サイト
                 </FieldLabel>
-                <Input name="offeredfrom"></Input>
+                <Input name="offeredfrom" />
                 <FieldLabel className="text-sm py-2">年収予定</FieldLabel>
-                <Input name="salary"></Input>
+                <Input name="salary" />
                 <div className="flex gap-4">
                   <div className="flex">
                     <FieldLabel className="text-sm" htmlFor="canSide">
@@ -125,7 +125,7 @@ export default async function Page() {
                   </div>
                 </div>
                 <FieldLabel className="text-sm py-2">平均残業時間</FieldLabel>
-                <Input name="avgOvertime"></Input>
+                <Input name="avgOvertime" />
                 <FieldLabel className="text-sm py-2">そのほかメモ</FieldLabel>
                 <Textarea name="note" rows={10} />
                 <Button variant="outline" type="submit">
