@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { getCompanyFromId } from "@/lib/data-access";
 import Link from "next/link";
 
-export default async function Home({
+export default async function Page({
   params,
 }: {
   params: Promise<{ id: string }>;

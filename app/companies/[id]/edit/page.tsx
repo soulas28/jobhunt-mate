@@ -23,7 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export default async function Home({
+export default async function Page({
   params,
 }: {
   params: Promise<{ id: string }>;

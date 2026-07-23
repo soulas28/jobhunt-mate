@@ -11,7 +11,7 @@ import { getCompanies, statusItems } from "@/lib/data-access";
 import Link from "next/link";
 import Header from "../../components/Header";
 
-export default async function Home({
+export default async function Page({
   searchParams,
 }: {
   searchParams: Promise<{
