@@ -91,8 +91,11 @@ export default async function Page({
                   </SelectContent>
                 </Select>
                 <FieldLabel className="text-sm py-2">ステータス</FieldLabel>
-                <Select></Select>
-                <Select items={statusItems} name="status">
+                <Select
+                  items={statusItems}
+                  name="status"
+                  defaultValue={company?.status}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Status" />
                   </SelectTrigger>
