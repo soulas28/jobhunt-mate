@@ -14,7 +14,7 @@ export default async function Page({
 
   return (
     <div>
-      <Header title="Company Detail" />
+      <Header title="TODO Detail" />
       {todo !== null ? (
         <main>
           <div className="flex">
