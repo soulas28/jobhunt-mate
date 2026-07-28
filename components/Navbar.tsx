@@ -5,6 +5,7 @@ export default function Navbar() {
       {[
         ["Home / Dashboard", "/"],
         ["Companies", "/companies"],
+        ["TODO", "/todo"],
       ].map((e, i) => (
         <a
           className="text-secondary border-y border-secondary px-5 py-3 text-left w-full block"

@@ -118,3 +118,37 @@ export async function updateCompany(params: {
     },
   });
 }
+
+export async function getTodos() {
+  const prisma = new PrismaClient({ adapter });
+  return prisma.todos.findMany();
+}
+
+export async function addTodo(params: {
+  company_id: number;
+  title: string;
+  deadline: Date;
+  note?: string;
+  application_id: number;
+}) {
+  const prisma = new PrismaClient({ adapter });
+  await prisma.todos.create({
+    data: {
+      company_id: params.company_id,
+      application_id: params.application_id,
+      title: params.title,
+      deadline: params.deadline,
+      is_completed: false,
+      note: params.note,
+    },
+  });
+}
+
+export async function getTodoFromId(id: number) {
+  const prisma = new PrismaClient({ adapter });
+  return prisma.todos.findUnique({
+    where: {
+      id,
+    },
+  });
+}

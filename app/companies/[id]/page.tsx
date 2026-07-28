@@ -20,6 +20,9 @@ export default async function Page({
             <Link href={`/companies/${company.id.toString()}/edit`}>
               <Button>Modify</Button>
             </Link>
+            <Link href={`/companies/${company.id.toString()}/addtodo`}>
+              <Button>Add Todo</Button>
+            </Link>
           </div>
           <h1 className="text-4xl py-2">{company.name}</h1>
           <h2 className="text-2xl py-2">tier : {company.rank}</h2>
