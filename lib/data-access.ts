@@ -152,3 +152,25 @@ export async function getTodoFromId(id: number) {
     },
   });
 }
+
+export async function updateTodo(params: {
+  id: number;
+  company_id: number;
+  title: string;
+  deadline: Date;
+  note?: string;
+}) {
+  const prisma = new PrismaClient({ adapter });
+  await prisma.todos.update({
+    where: {
+      id: params.id,
+    },
+    data: {
+      company_id: params.company_id,
+      title: params.title,
+      deadline: params.deadline,
+      is_completed: false,
+      note: params.note,
+    },
+  });
+}
