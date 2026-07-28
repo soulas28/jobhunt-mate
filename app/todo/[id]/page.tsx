@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
-import { getTodoFromId } from "@/lib/data-access";
+import { getCompanyFromId, getTodoFromId } from "@/lib/data-access";
 import Link from "next/link";
 
 export default async function Page({
@@ -9,6 +9,8 @@ export default async function Page({
   params: Promise<{ id: string }>;
 }) {
   const todo = await getTodoFromId(parseInt((await params).id));
+  const companyName = (await getCompanyFromId(parseInt((await params).id)))
+    ?.name;
 
   return (
     <div>
@@ -22,6 +24,7 @@ export default async function Page({
           </div>
           <h1 className="text-4xl py-2">{todo.title}</h1>
           <p className="py-2">id : {todo.id}</p>
+          <p className="py-2">{companyName}</p>
           <p className="py-2">
             ステータス : {todo.is_completed ? "完了済み" : "未完了"}
           </p>
