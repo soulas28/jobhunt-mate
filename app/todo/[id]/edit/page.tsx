@@ -8,6 +8,7 @@ import { updateTodo, getTodoFromId } from "@/lib/data-access";
 import Header from "@/components/Header";
 import { Textarea } from "@/components/ui/textarea";
 import { redirect } from "next/navigation";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default async function Page({
   params,
@@ -30,6 +31,7 @@ export default async function Page({
       title: formData.get("title")!.toString(),
       deadline: new Date(formData.get("deadline")!.toString()),
       note: formData.get("note")?.toString() || "",
+      is_completed: formData.get("status")?.toString() === "on",
     });
     redirect("../");
   };
@@ -44,6 +46,17 @@ export default async function Page({
               <Field>
                 <FieldLabel className="text-sm py-2">タイトル</FieldLabel>
                 <Input name="title" defaultValue={currentTodo?.title} />
+                <div className="flex">
+                  <FieldLabel className="text-sm py-2">
+                    ステータス 完了? :
+                  </FieldLabel>
+                  <Checkbox
+                    name="status"
+                    className="py-3"
+                    defaultChecked={currentTodo?.is_completed}
+                  />
+                </div>
+
                 <FieldLabel className="text-sm py-2">締め切り</FieldLabel>
                 <Input
                   name="deadline"

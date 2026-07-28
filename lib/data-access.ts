@@ -159,6 +159,7 @@ export async function updateTodo(params: {
   title: string;
   deadline: Date;
   note?: string;
+  is_completed: boolean;
 }) {
   const prisma = new PrismaClient({ adapter });
   await prisma.todos.update({
@@ -169,7 +170,7 @@ export async function updateTodo(params: {
       company_id: params.company_id,
       title: params.title,
       deadline: params.deadline,
-      is_completed: false,
+      is_completed: params.is_completed,
       note: params.note,
     },
   });

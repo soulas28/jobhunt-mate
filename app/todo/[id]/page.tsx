@@ -9,8 +9,7 @@ export default async function Page({
   params: Promise<{ id: string }>;
 }) {
   const todo = await getTodoFromId(parseInt((await params).id));
-  const companyName = (await getCompanyFromId(parseInt((await params).id)))
-    ?.name;
+  const companyName = (await getCompanyFromId(todo?.company_id || -1))?.name;
 
   return (
     <div>
